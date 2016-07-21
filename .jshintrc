@@ -1,0 +1,23 @@
+{
+  "browser": true,
+  "esnext": true,
+  "globals": {
+    "_": true,
+    "underscore": true,
+    "moment": true,
+    "angular": true,
+    "SQLiteDb": true,
+    "console": true,
+    "cordova": true,
+    "StatusBar": true,
+    "Connection": true,
+    "Ionic": true,
+    "PushNotification": true,
+    "bsWorkshop": true
+  },
+  "validthis":true,
+  "jquery":true,
+  "strict": false,
+  "undef": true,
+  "unused": false
+}
