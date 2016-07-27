@@ -87,6 +87,9 @@
   }
 
   function getObjectValue(item) {
+    if (item === window) {
+      return 'windowObject';
+    }
     return JSON.stringify(item);
   }
 

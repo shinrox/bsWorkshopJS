@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Funções Construtoras</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../assets/scripts/helpers.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller="home as vm">
+      <div>
+        <ul>
+          <li ng-repeat="item in vm.bsFavorites.itens track by $index">
+            {{item}}
+          </li>
+        </ul>
+        
+      </div>
+
+      <div>
+        <button ng-click="vm.add()">Add</button>
+      </div>
+    </div>
+  </body>
+
+  <script src="script-test.js"></script>
+</html>
