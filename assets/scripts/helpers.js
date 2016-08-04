@@ -2,7 +2,8 @@
   window.bsWorkshop = {
     log: logger,
     divider: divider,
-    useLogDivider: false
+    useLogDivider: false,
+    getRandomColor: getRandomColor
   };
 
   window.onload = function() {
@@ -103,6 +104,10 @@
 
   function getFunctionValue(item) {
     return [item.toString(), (item.name ? 'Função nomeada como ' + item.name : 'Função anônima')].join(' - ');
+  }
+
+  function getRandomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
 })();
