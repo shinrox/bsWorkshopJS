@@ -1,14 +1,23 @@
-var Favorites;
+(function() {
+  var BS, hasProp = {}.hasOwnProperty;
+  window.BS = window.BS || {};
+  BS = window.BS;
 
-Favorites = (function() {
+  BS.factory('Favorites', Favorites);
+
   function Favorites(client) {
-    this.client = !client ? client : 'unknown';
+    if (!(this instanceof Favorites)) {
+      return new Favorites(client);
+    }
+    
+    this.client = !client ? 'unknown' : client;
     this.namespace = "Favorites_" + this.client;
     this.repository = localStorage;
     this.events = {
       on: {},
       off: {}
     };
+    console.log('fav this',this);
     this.load();
   }
 
@@ -98,71 +107,4 @@ Favorites = (function() {
     }
   };
 
-  return Favorites;
-
 })();
-
-window.onload = function() {
-  return (function(angular) {
-    var bsFavoritesProvider;
-    if (!angular) {
-      return;
-    }
-    bsFavoritesProvider = function() {
-      var fav, settings;
-      fav = null;
-      settings = {
-        name: 'unknown'
-      };
-      this.set = function(config) {
-        return angular.extend(settings, config);
-      };
-      this.$get = [
-        '$rootScope', function($rootScope) {
-          var broadcast;
-          broadcast = function(event, params) {
-            return $rootScope.$broadcast(event, params);
-          };
-          if (!fav) {
-            fav = new Favorites(settings.name);
-            fav.on('add', function(itens) {
-              return broadcast('bsFavorites.add', itens);
-            });
-            fav.on('remove', function(itens) {
-              return broadcast('bsFavorites.remove', itens);
-            });
-          }
-          return fav;
-        }
-      ];
-    };
-
-    angular.module('bs.favorites', []).provider('bsFavorites', bsFavoritesProvider);
-    
-    /* exemplo */
-    // angular.module('test', ['bs.favorites']).config([
-    //   'bsFavoritesProvider', function(bsFavoritesProvider) {
-    //     bsFavoritesProvider.set({
-    //       name: 'cliente'
-    //     });
-    //   }
-    // ]).controller('home', [
-    //   'bsFavorites', '$scope', function(bsFavorites, $scope) {
-    //     var vm;
-    //     vm = this;
-    //     vm.bsFavorites = bsFavorites;
-    //     $scope.$on('bsFavorites.add', function(event, data) {
-    //       return console.log(event, data);
-    //     });
-    //     vm.add = function() {
-    //       return bsFavorites.add({
-    //         id: new Date().getTime()
-    //       });
-    //     };
-    //     console.log('controller', bsFavorites);
-    //     return this;
-    //   }
-    // ]);
-    // return angular.bootstrap(document, ['test']);
-  })(angular);
-};

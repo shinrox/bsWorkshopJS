@@ -13,7 +13,9 @@
     "Connection": true,
     "Ionic": true,
     "PushNotification": true,
-    "bsWorkshop": true
+    "bsWorkshop": true,
+    "APP": true,
+    "BS": true
   },
   "validthis":true,
   "jquery":true,
